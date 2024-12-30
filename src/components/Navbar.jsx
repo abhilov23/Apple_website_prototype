@@ -1,6 +1,6 @@
-import appleImg from '/assets/images/apple.svg'
-import searchImg from '/assets/images/search.svg'
-import bagImg from '/assets/images/bag.svg'
+import { appleImg } from '../utils'
+import { searchImg } from '../utils'
+import { bagImg } from '../utils'
 import {navLists} from '../constants'
 
 
