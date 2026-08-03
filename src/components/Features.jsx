@@ -1,11 +1,11 @@
 import { useGSAP } from '@gsap/react'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { animateWithGsap } from '../utils/animations';
 import { explore1Img, explore2Img, exploreVideo } from '../utils';
 import gsap from 'gsap';
 
 const Features = () => {
-  const videoRef = useRef();
+  const videoRef = useRef(null);
 
   useGSAP(() => {
     gsap.to('#exploreVideo', {
@@ -15,7 +15,9 @@ const Features = () => {
         start: '-10% bottom',
       },
       onComplete: () => {
-        videoRef.current.play();
+        videoRef.current?.play()?.catch(() => {
+          // Ignore autoplay interruptions from the browser.
+        });
       }
     })
 
@@ -33,13 +35,13 @@ const Features = () => {
 
   return (
     <section className="h-full common-padding bg-zinc relative overflow-hidden">
-      <div className="screen-max-wdith">
+      <div className="screen-max-width">
         <div className="mb-12 w-full">
           <h1 id="features_title" className="section-heading">Explore the full story.</h1>
         </div>
         
         <div className="flex flex-col justify-center items-center overflow-hidden">
-          <div className="mt-32 mb-24 pl-24">
+          <div className="mt-32 mb-24 px-5 sm:px-0 sm:pl-24 self-start">
             <h2 className="text-5xl lg:text-7xl font-semibold">iPhone.</h2>
             <h2 className="text-5xl lg:text-7xl font-semibold">Forged in titanium.</h2>
           </div>

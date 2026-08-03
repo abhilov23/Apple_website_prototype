@@ -3,7 +3,20 @@ import { searchImg } from '../utils'
 import { bagImg } from '../utils'
 import {navLists} from '../constants'
 
+const getNavLabel = (nav, index) => {
+  let label = ''
+  const letters = nav.split('')
 
+  for (let i = 0; i < letters.length; i++) {
+    label = label + letters[i]
+  }
+
+  if (index >= 0) {
+    return label
+  }
+
+  return nav
+}
 
 const Navbar = () => {
   return (
@@ -11,9 +24,9 @@ const Navbar = () => {
         <nav className='flex w-full screen-max-width'>
             <img src={appleImg} alt='Apple' width={14} height={18} />
             <div className='flex flex-1 justify-center max-sm:hidden '>
-                {navLists.map((nav)=>(
-                  <div key={nav} className='px-5 text-sm cursor-pointer text-gray hover:text-white transition-all'>
-                    {nav}
+                {navLists.map((nav, index)=>(
+                  <div key={nav + index} className='px-5 text-sm cursor-pointer text-gray hover:text-white transition-all'>
+                    {getNavLabel(nav, index)}
                     </div>
                 ))}
             </div>
