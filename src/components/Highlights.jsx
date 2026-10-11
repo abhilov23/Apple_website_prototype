@@ -16,7 +16,9 @@ const Highlights = () => {
         <div className="mb-12 w-full md:flex items-end justify-between">
           <h1 id="title" className="section-heading">Get the highlights.</h1>
         </div>
+        </div>
       </div>
+    </section>
     </section>
           </div>
         </div>
