@@ -1,17 +1,32 @@
-import { Html, OrbitControls, PerspectiveCamera, View } from "@react-three/drei"
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  View,
+} from "@react-three/drei";
 
-import * as THREE from 'three'
-import Lights from './Lights';
-import Loader from './Loader';
-import IPhone from './IPhone';
+import * as THREE from "three";
 import { Suspense } from "react";
 
-const ModelView = ({ index, groupRef, gsapType, controlRef, setRotationState, size, item }) => {
+import Lights from "./Lights";
+import Loader from "./Loader";
+import IPhone from "./IPhone";
+
+const ModelView = ({
+  index,
+  groupRef,
+  gsapType,
+  controlRef,
+  setRotationState,
+  size,
+  item,
+}) => {
   return (
     <View
       index={index}
       id={gsapType}
-      className={`w-full h-full absolute ${index === 2 ? 'right-[-100%]' : ''}`}
+      className={`w-full h-full absolute ${
+        index === 2 ? "right-[-100%]" : ""
+      }`}
     >
       {/* Ambient Light */}
       <ambientLight intensity={0.3} />
@@ -20,19 +35,32 @@ const ModelView = ({ index, groupRef, gsapType, controlRef, setRotationState, si
 
       <Lights />
 
-      <OrbitControls 
+      <OrbitControls
         makeDefault
         ref={controlRef}
         enableZoom={false}
         enablePan={false}
         rotateSpeed={0.4}
-        target={new THREE.Vector3(0, 0 ,0)}
-        onEnd={() => setRotationState(controlRef.current.getAzimuthalAngle())}
-      /> 
+        target={new THREE.Vector3(0, 0, 0)}
+        onEnd={() =>
+          setRotationState(controlRef.current.getAzimuthalAngle())
+        }
+      />
+      <div className="absolute top-4 left-4 z-50">
+        {item.description}
+      </div>
+      <div
+        className="absolute top-4 left-4 z-50"
+        name={index === 1 ? 'small' : 'large'}
+      />
 
-      <group ref={groupRef} name={`${index === 1} ? 'small' : 'large`} position={[0, 0 ,0]}>
+      <group
+        name={index === 1 ? 'small' : 'large'}
+        name={`${index === 1} ? 'small' : 'large`}
+        position={[0, 0, 0]}
+      >
         <Suspense fallback={<Loader />}>
-          <IPhone 
+          <IPhone
             scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
             item={item}
             size={size}
@@ -40,7 +68,7 @@ const ModelView = ({ index, groupRef, gsapType, controlRef, setRotationState, si
         </Suspense>
       </group>
     </View>
-  )
-}
+  );
+};
 
-export default ModelView
+export default ModelView;
