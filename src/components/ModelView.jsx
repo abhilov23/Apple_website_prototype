@@ -51,7 +51,7 @@ const ModelView = ({
       </div>
       <div
         className="absolute top-4 left-4 z-50"
-        dangerouslySetInnerHTML={{ __html: item.description }}
+        name={index === 1 ? 'small' : 'large'}
       />
 
       <group
