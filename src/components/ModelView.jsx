@@ -46,7 +46,9 @@ const ModelView = ({
           setRotationState(controlRef.current.getAzimuthalAngle())
         }
       />
-
+      <div className="absolute top-4 left-4 z-50">
+        {item.description}
+      </div>
       <div
         className="absolute top-4 left-4 z-50"
         dangerouslySetInnerHTML={{ __html: item.description }}
